@@ -3,6 +3,9 @@
  * 
  * @author Chris Rodriguez
  */
+var React = require('react');
+var ReactDom = require('react-dom');
+
 $(document).ready(function(){
 	console.log("Everything is loading. This is good.");
 	$(document).get(0).t_bananaOs = new BananaOS();
