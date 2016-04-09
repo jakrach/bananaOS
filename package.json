@@ -1,0 +1,23 @@
+{
+  "name": "BananaOS",
+  "version": "1.0.0",
+  "description": "bananaOS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakrach/bitcamp_16.git"
+  },
+  "author": "Jeremy Krach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakrach/bitcamp_16/issues"
+  },
+  "homepage": "https://github.com/jakrach/bitcamp_16#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
