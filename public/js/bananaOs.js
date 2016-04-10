@@ -191,6 +191,7 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	this.width;
 	this.height;
 	this.content;
+	this.resize;
 	this.elementSrc;
 	
 	this.init = function(){
@@ -247,11 +248,16 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 				$("#" + $(this).data("windowid")).remove(0);
 			});
 			
+			
 			$("#" + this.id).draggable({
 				handle: ".bananaOsDesktopWindowTitleBar", 
 				containment: "#bananaOsDesktopWindowArea", 
 				scroll: false
-			}).resizable();
+			}).resizable({
+				resize : function(){
+					console.log(this);
+				}
+			});
 		} else {
 			window.setTimeout(function(t_context){
 				t_context.setListeners();
@@ -719,6 +725,10 @@ function BananaOSTextEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsTextEditorWindow;
+			this.window.t_context = this;
+			this.window.resize = function(){
+				$(document).get(0).t_bananaOs.windows.bananaOsTextEditorWindow.t_context.editor.resize();
+			}
 			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
