@@ -53,7 +53,7 @@ app.get('/file/list', function(req, res) {
 
 app.post('/file/write', function (req, res) {
 	if (req.body.file == null || req.body.data == null) {
-		res.status('400').send('Error: 400');
+		res.status('400').send('params not met');
 	} else {
 		if (!/^[a-z0-9]+$/.test(req.body.file)) {
 			console.log('illegal character');
@@ -65,7 +65,16 @@ app.post('/file/write', function (req, res) {
 });
 
 app.post('/file/read', function (req, res) {
-	// todo
+	if (req.body.file == null) {
+		res.status('400').send('params not met');
+	} else {
+		if (!/^[a-z0-9]+$/.test(req.body.file)) {
+			console.log('illegal character');
+			return res.status('400').send('illegal character');
+		}	
+		_readFile(__dirname + "/jail/" + req.body.file);
+		res.status('200').send('OK');
+	}
 }); 
 
 app.post('/console/execute', function (req, res) {
