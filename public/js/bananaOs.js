@@ -503,8 +503,76 @@ function BananaOSFileData(name, type){
 	
 }
 
-function BananaOSCodeEditor(){
+function BananaOSCodeEditor(content){
+	this.window;
+	this.editor;
+	this.defaultId = "bananaOsCodeEditorWindow";
+	this.defaultWidth = 500;
+	this.defaultHeight = 350;
+	this.elementSrc = '<div id="bananaOsCodeEditor"></div>';
+	this.content;
 	
+	this.sendingAjax;
+
+	this.init = function(){
+		this.sendingAjax = false;
+		this.content = content;
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Code Editor", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		this.setListeners();
+	};
+	
+	this.setListeners = function(){
+		if($("#" + this.defaultId).length == 0){
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 50, this);
+		} else {
+			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
+			this.editor = ace.edit("bananaOsCodeEditor");
+			this.editor.setTheme("ace/theme/monokai");
+			this.editor.getSession().setMode("ace/mode/javascript");
+			this.editor.setValue(this.content);
+		}
+	}
+	
+	this.sendCommand = function(command){
+		if(!this.sendingAjax){
+			this.sendingAjax = true;
+			$.ajax({
+			  url: "/console/execute",
+			  
+			  method: "POST",
+			  
+			  t_context : this,
+			  t_command : command,
+			  
+			  data: { command : command },
+			  
+			  success : function(json){
+				  this.t_result = json.result;
+			  },
+			  
+			  error : function(ex, eStr, eTh){
+				  this.t_result = eStr;
+			  },
+			  
+			  complete: [function(){
+				  $(this.t_context.output).append("> " + this.t_command + "<br>");  
+				  $(this.t_context.input).val("");
+				  $(this.t_context.output).append(this.t_result);
+				  $(this.t_context.output).scrollTop($(this.t_context.output).get(0).scrollHeight);
+			  }, function(){
+				  this.t_context.sendingAjax = false;
+			  }]
+			});
+		} else {
+			window.setTimeout(function(command, t_context){
+				t_context.sendCommand(command);
+			}, 50, command, this);
+		}
+	}
+	
+	this.init();
 }
 
 function BananaOSTextEditor(){

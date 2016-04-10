@@ -256,3 +256,8 @@ body {
     width: 100%;
     word-wrap: break-word;
 }
+.bananaOsCodeEditor {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+}
