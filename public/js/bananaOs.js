@@ -57,10 +57,10 @@ function BananaOS(){
 	                            ];
 	
 	this.defaultApps = [
-	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
-	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
-	                    {id:"calculatorApp", icon:"images/calc.png", callback:function(){new BananaOSCalculator();}},
-	                    {id:"fileBrowserApp", icon:"images/folder.png", callback:function(){new BananaOSFileBrowser();}},
+	                    {id:"aboutApp", tooltip:"About", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
+	                    {id:"consoleApp", tooltip:"Console", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
+	                    {id:"calculatorApp", tooltip:"Calculator", icon:"images/calc.png", callback:function(){new BananaOSCalculator();}},
+	                    {id:"fileBrowserApp", tooltip:"File Browser", icon:"images/folder.png", callback:function(){new BananaOSFileBrowser();}},
 	                    ];
 	
 	this.apps = {};
@@ -104,7 +104,7 @@ function BananaOS(){
 	this.loadDefaultApps = function(){
 		for(key in this.defaultApps){
 			app = this.defaultApps[key];
-			this.addApp(app.id, app.icon, app.callback);
+			this.addApp(app.id, app.icon, app.tooltip, app.callback);
 		}
 		
 		window.setTimeout(function(){
@@ -112,9 +112,9 @@ function BananaOS(){
 		}, 50);
 	}
 	
-	this.addApp = function(id, icon, callback){
+	this.addApp = function(id, icon, tooltip, callback){
 		if(typeof(this.apps[id]) != "object"){
-			this.apps[id] = new BananaOSDesktopApp(id, icon, callback);
+			this.apps[id] = new BananaOSDesktopApp(id, icon, tooltip, callback);
 		} else {
 			window.alert("Error: App already exists with this ID");
 		}
@@ -143,14 +143,16 @@ function BananaOS(){
 	this.init();
 }
 
-function BananaOSDesktopApp(id, icon, callback){
+function BananaOSDesktopApp(id, icon, tooltip, callback){
 	this.id;
+	this.tooltip;
 	this.icon;
 	this.callback;
 	this.elementSrc;
 	
 	this.init = function(){
 		this.id = id;
+		this.tooltip = tooltip;
 		this.icon = icon;
 		this.callback = callback;
 		
@@ -158,7 +160,7 @@ function BananaOSDesktopApp(id, icon, callback){
 	}
 	
 	this.generateDOMElement = function(){
-		this.elementSrc  = '<div id="' + this.id + '" class="bananaOsDesktopApp">';
+		this.elementSrc  = '<div id="' + this.id + '" class="bananaOsDesktopApp" title="' + this.tooltip + '">';
 		this.elementSrc += '	<img class="bananaOsDesktopAppIcon" src="' + this.icon + '"></img>';
 		this.elementSrc += '</div>';
 		
