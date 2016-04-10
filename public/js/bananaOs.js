@@ -632,10 +632,10 @@ function BananaOSCodeEditor(file){
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
-				$(this).get(0).t_editorContext.editorContext.file.setContent(this.editor.getValue());
+				$(this).get(0).t_editorContext.file.setContent(this.editor.getValue());
 				
 				var t_windowId = $(this).data("windowid");
-				$(this).get(0).t_editorContext.editorContext.file.saveFile(function(){
+				$(this).get(0).t_editorContext.file.saveFile(function(){
 					$(document).get(0).t_bananaOs.closeWindow(t_windowId);
 				});
 			});
