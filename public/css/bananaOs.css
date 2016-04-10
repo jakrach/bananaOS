@@ -151,3 +151,22 @@ body {
     position: absolute;
     width: 100%;
 }
+.bananaOsAboutHead {
+	width: 100%;
+	height: 25%;
+	box-sizing: border-box;
+	font-size: 15px;
+	font-family: monospace;
+	text-align: center;
+	margin-top: calc(12.5% - 12.5px);
+	padding: 10px;
+}
+.bananaOsAboutBody {
+	width: 100%;
+	height: 75%;
+	box-sizing: border-box;
+	font-size: 13px;
+	font-family: Helvetica;
+	text-align: left;
+	padding: 15px;
+}

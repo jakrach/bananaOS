@@ -42,7 +42,8 @@ function BananaOS(){
 	                            ["Book<br>", 100, false],*/
 	                            ];
 	
-	this.defaultApps = [{id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}}];
+	this.defaultApps = [{id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
+	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}}];
 	
 	this.apps = {};
 	this.windows = {};
@@ -224,8 +225,7 @@ function BananaOSConsole(){
 	this.output;
 	
 	this.sendingAjax;
-	
-	
+
 	this.init = function(){
 		this.sendingAjax = false;
 		
@@ -257,40 +257,58 @@ function BananaOSConsole(){
 	
 	this.sendCommand = function(command){
 		if(!this.sendingAjax){
-			this.sendingAjax = true;
-			$.ajax({
-			  url: "/console/execute",
-			  
-			  method: "POST",
-			  
-			  t_context : this,
-			  t_command : command,
-			  
-			  data: { command : command },
-			  
-			  success : function(json){
-				  this.t_result = json.result;
-			  },
-			  
-			  error : function(ex, eStr, eTh){
-				  this.t_result = eStr;
-			  },
-			  
-			  complete: [function(){
-				  $(this.t_context.output).append("> " + this.t_command + "<br>");  
-				  $(this.t_context.input).val("");
-				  $(this.t_context.output).append(this.t_result);
-				  $(this.t_context.output).scrollTop($(this.t_context.output).get(0).scrollHeight);
-			  }, function(){
-				  this.t_context.sendingAjax = false;
-			  }]
-			});
+			if(command == "clear"){
+				$(this.output).get(0).innerHTML = "";
+			} else {
+				this.sendingAjax = true;
+				$.ajax({
+				  url: "/console/execute",
+				  
+				  method: "POST",
+				  
+				  t_context : this,
+				  t_command : command,
+				  
+				  data: { command : command },
+				  
+				  success : function(json){
+					  this.t_result = json.result;
+				  },
+				  
+				  error : function(ex, eStr, eTh){
+					  this.t_result = eStr;
+				  },
+				  
+				  complete: [function(){
+					  $(this.t_context.output).append("> " + this.t_command + "<br>");  
+					  $(this.t_context.input).val("");
+					  $(this.t_context.output).append(this.t_result);
+					  $(this.t_context.output).scrollTop($(this.t_context.output).get(0).scrollHeight);
+				  }, function(){
+					  this.t_context.sendingAjax = false;
+				  }]
+				});
+			}
 		} else {
 			window.setTimeout(function(command, t_context){
 				t_context.sendCommand(command);
 			}, 50, command, this);
 		}
 	}
+	
+	this.init();
+}
+
+function BananaOSAboutPage(){
+	this.window;
+	this.defaultId = "bananaOsAboutWindow";
+	this.defaultWidth = 500;
+	this.defaultHeight = 350;
+	this.elementSrc = '<div class="bananaOsAboutHead">Banana OS v0.0.1</div><div class="bananaOsAboutBody">BananaOS is a project by Jeremy Krach, UMD CS Major and banana afficionady, and Chris Rodriguez, UMBC CS Major and potassium addict.</div>';
+
+	this.init = function(){
+		$(document).get(0).t_bananaOs.addWindow("bananaOsAboutWindow", "About Banana OS", this.defaultWidth, this.defaultHeight, this.elementSrc);
+	};
 	
 	this.init();
 }
