@@ -182,7 +182,7 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	
 	this.generateDOMElement = function(){
 		this.elementSrc = '<div id="' + this.id + '" class="bananaOsDesktopWindow">';
-		this.elementSrc += '	<div class="bananaOsDesktopWindowTitleBar">' + this.title + '<i class="bananaOsDesktopWindowTitleBarClose fa fa-close" data-windowid="' + this.id + '"></i></div>';
+		this.elementSrc += '	<div class="bananaOsDesktopWindowTitleBar" disabled>' + this.title + '<i class="bananaOsDesktopWindowTitleBarClose fa fa-close" data-windowid="' + this.id + '"></i></div>';
 		this.elementSrc += '	<div class="bananaOsDesktopWindowContent">' + this.content + '</div>';
 		this.elementSrc += '</div>';
 		
