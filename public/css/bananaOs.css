@@ -220,3 +220,15 @@ body {
 	font-family: Helvetica;
 	font-size: 13px;
 }
+.bananaOsFile {
+	position: relative;
+	float: left;
+	width: 50px;
+}
+.bananaOsFileIcon {
+	position: relative;
+}
+.bananaOsFileName {
+	width: 100%;
+	text-overflow: clip;
+}

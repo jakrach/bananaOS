@@ -478,7 +478,7 @@ function BananaOSFile(name, type, containerId){
 	}
 	
 	this.setListeners = function(){
-		if($("" + this.id).length > 0){
+		if($("#" + this.id).length > 0){
 			$("#" + this.id).get(0).t_context = this;
 			$("#" + this.id).on("click", function(){
 				$(this).get(0).t_context.open();
