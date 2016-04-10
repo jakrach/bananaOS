@@ -412,7 +412,6 @@ function BananaOSFileBrowser(){
 			  
 			  success : function(json){
 				  for(i in json){
-					  console.log(json[i]);
 					  this.t_context.files[json[i].name] = new BananaOSFile(json[i].name, json[i].type, "bananaOsFileBrowserContent");
 				  }
 			  },
@@ -422,7 +421,7 @@ function BananaOSFileBrowser(){
 			  },
 			  
 			  complete: function(){
-				  console.log(this.t_result);
+				  console.log(this.t_context.files);
 			  }
 			});
 		} else {
