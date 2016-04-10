@@ -519,7 +519,7 @@ function BananaOSFileData(name, type){
 			$.ajax({
 			  url: "/file/read",
 			  
-			  method: "GET",
+			  method: "POST",
 			  
 			  t_context : this,
 			  
@@ -560,7 +560,7 @@ function BananaOSFileData(name, type){
 			$.ajax({
 			  url: "/file/write",
 			  
-			  method: "GET",
+			  method: "POST",
 			  
 			  t_context : this,
 			  
