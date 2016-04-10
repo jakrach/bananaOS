@@ -166,3 +166,21 @@ body {
 	text-align: left;
 	padding: 15px;
 }
+.bananaOsCalculatorOutput {
+	width: 100%;
+	height: 25%;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 13px;
+}
+.bananaOsCalculatorPad {
+	width: 100%;
+	height: 75%;
+	box-sizing: border-box;
+}
+.bananaOsCalculatorPad > tbody > tr > td {
+	border: 1px solid black;
+	border-radius: 8px;
+	width: 35px; 
+	height: 35px;
+}
