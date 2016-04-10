@@ -307,7 +307,7 @@ function BananaOSAboutPage(){
 	this.defaultId = "bananaOsAboutWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div class="bananaOsAboutHead">Banana OS v0.0.1</div><div class="bananaOsAboutBody">BananaOS is a project by Jeremy Krach, UMD CS Major and banana afficionady, and Chris Rodriguez, UMBC CS Major and potassium addict.</div>';
+	this.elementSrc = '<div class="bananaOsAboutHead">Banana OS v0.0.1</div><div class="bananaOsAboutBody">BananaOS is a project by Jeremy Krach, UMD CS Major and banana afficionado, and Chris Rodriguez, UMBC CS Major and potassium addict.</div>';
 
 	this.init = function(){
 		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "About Banana OS", this.defaultWidth, this.defaultHeight, this.elementSrc);
