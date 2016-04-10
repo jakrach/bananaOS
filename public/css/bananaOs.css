@@ -183,4 +183,6 @@ body {
 	border-radius: 8px;
 	width: 35px; 
 	height: 35px;
+	text-align: center;
+	cursor: pointer;
 }

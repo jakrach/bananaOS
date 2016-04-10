@@ -321,7 +321,7 @@ function BananaOSCalculator(){
 	this.defaultId = "bananaOsConsoleWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr></tbody><tbody><tr><td>7</td><td>8</td><td>9</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
+	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="4">Enter</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
 	this.input;
 	this.output;
 	
