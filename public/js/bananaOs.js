@@ -187,11 +187,6 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 		this.elementSrc += '</div>';
 		
 		$("#bananaOsDesktopWindowArea").append(this.elementSrc);
-		$("#" + this.id).css("left", "calc(25% - " + (this.width/2) + "px)");
-		$("#" + this.id).css("top", "calc(25% - " + (this.height/2) + "px)");
-		$("#" + this.id).css("width", this.width + "px");
-		$("#" + this.id).css("height", this.height + "px");
-		$("#" + this.id).css("z-index", (50 + $(document).get(0).t_bananaOs.getUniqueFileId()));
 		
 		this.setListeners();
 		this.setActiveWindow();
@@ -212,21 +207,33 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	}
 	
 	this.setListeners = function(){
-		$("#" + this.id).get(0).t_context = this;
-		$("#" + this.id).on("mousedown.activeWindowListener", function(){
-			$(this).get(0).t_context.setActiveWindow();
-		});
-		$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click." + this.id + "CloseButton", function(e){
-			e.stopPropagation();
-			$(document).get(0).t_bananaOs.closeWindow($(this).data("windowid"));
-			$("#" + $(this).data("windowid")).remove(0);
-		});
-		
-		$("#" + this.id).draggable({
-			handle: ".bananaOsDesktopWindowTitleBar", 
-			containment: "#bananaOsDesktopWindowArea", 
-			scroll: false
-		}).resizable();
+		if($("#" + this.id).length > 0){
+			$("#" + this.id).css("left", "calc(25% - " + (this.width/2) + "px)");
+			$("#" + this.id).css("top", "calc(25% - " + (this.height/2) + "px)");
+			$("#" + this.id).css("width", this.width + "px");
+			$("#" + this.id).css("height", this.height + "px");
+			$("#" + this.id).css("z-index", (50 + $(document).get(0).t_bananaOs.getUniqueFileId()));
+			
+			$("#" + this.id).get(0).t_context = this;
+			$("#" + this.id).on("mousedown.activeWindowListener", function(){
+				$(this).get(0).t_context.setActiveWindow();
+			});
+			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click." + this.id + "CloseButton", function(e){
+				e.stopPropagation();
+				$(document).get(0).t_bananaOs.closeWindow($(this).data("windowid"));
+				$("#" + $(this).data("windowid")).remove(0);
+			});
+			
+			$("#" + this.id).draggable({
+				handle: ".bananaOsDesktopWindowTitleBar", 
+				containment: "#bananaOsDesktopWindowArea", 
+				scroll: false
+			}).resizable();
+		} else {
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 20, this);
+		}
 	}
 	
 	this.setActiveWindow = function(){
