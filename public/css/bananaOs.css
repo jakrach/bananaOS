@@ -101,7 +101,7 @@ body {
 }
 
 .bananaOsDesktopWindow.bananaOsDesktopWindowActive {
-	z-index: 80;
+	z-index: 999;
 }
 
 .bananaOsDesktopWindow {

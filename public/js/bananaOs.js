@@ -189,6 +189,7 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 		$("#bananaOsDesktopWindowArea").append(this.elementSrc);
 		$("#" + this.id).css("width", this.width + "px");
 		$("#" + this.id).css("height", this.height + "px");
+		$("#" + this.id).css("z-index", 50 + $(document).get(0).t_bananaOs.getUniqueFileId());
 		
 		this.setListeners();
 		this.setActiveWindow();
