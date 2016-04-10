@@ -242,6 +242,9 @@ body {
 .bananaOsFile:active {
 	background-color: #42a5f5;
 }
+.bananaOsFile.selected {
+	background-color: #64b5f6;
+}
 .bananaOsFileIcon {
 	box-sizing: border-box;
     position: relative;

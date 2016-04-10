@@ -481,6 +481,8 @@ function BananaOSFile(name, type, containerId){
 		if($("#" + this.id).length > 0){
 			$("#" + this.id).get(0).t_context = this;
 			$("#" + this.id).on("click", function(){
+				$(".bananaOsFile.selected").removeClass("selected");
+				$(this).addClass("selected");
 				$(this).get(0).t_context.open();
 			});
 		} else {
