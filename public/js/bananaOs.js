@@ -262,6 +262,7 @@ function BananaOSConsole(){
 		if(!this.sendingAjax){
 			if(command == "clear"){
 				$(this.output).get(0).innerHTML = "";
+				$(this.input).val("");
 			} else {
 				this.sendingAjax = true;
 				$.ajax({
