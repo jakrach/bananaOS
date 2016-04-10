@@ -350,7 +350,7 @@ function BananaOSCalculator(){
 			});
 			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").on("click", function(){
-				if($(this).get(0).innerHTML != "Enter"){
+				if($(this).get(0).innerHTML != "Clear"){
 					$($(this).get(0).t_context.output).get(0).innerHTML = "";
 					$($(this).get(0).t_context.output).data("hasbananas", 0);
 				} else if($(this).get(0).innerHTML != "Enter"){
