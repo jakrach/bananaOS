@@ -634,13 +634,14 @@ function BananaOSCodeEditor(file){
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
-			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
 				$(this).get(0).t_editorContext.file.setContent($(this).get(0).t_editorContext.editor.getValue());
 				
 				var t_windowId = $(this).data("windowid");
 				$(this).get(0).t_editorContext.file.saveFile(function(){
 					$(document).get(0).t_bananaOs.closeWindow(t_windowId);
 				});
+				e.stopPropagation();
 			});
 			
 			this.editor = ace.edit(this.editorId);
