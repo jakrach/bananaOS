@@ -350,13 +350,13 @@ function BananaOSCalculator(){
 			});
 			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").on("click", function(){
-				if($(this).get(0).innerHTML != "Clear"){
+				if($(this).get(0).innerHTML == "Clear"){
 					$($(this).get(0).t_context.output).get(0).innerHTML = "";
 					$($(this).get(0).t_context.output).data("hasbananas", 0);
-				} else if($(this).get(0).innerHTML != "Enter"){
-					$($(this).get(0).t_context.output).append($(this).get(0).innerHTML);
-				} else {
+				} else if($(this).get(0).innerHTML == "Enter"){
 					$(this).get(0).t_context.calculate();
+				} else {
+					$($(this).get(0).t_context.output).append($(this).get(0).innerHTML);
 				}
 			});
 		}
