@@ -693,7 +693,7 @@ function BananaOSTextEditor(file){
 			});
 			
 			this.editor = ace.edit(this.editorId);
-			this.editor.setTheme("ace/theme/terminal");
+			this.editor.setTheme("ace/theme/cobalt");
 			this.editor.getSession().setMode("ace/mode/text");
 			this.editor.setValue(this.content);
 		}
