@@ -493,22 +493,24 @@ function BananaOSFile(name, type, containerId){
 	}
 	
 	this.open = function(){
-		console.log("Open() called for file " + this.name + " with type " + this.type);
+		new BananaOSFileData(this.name, this.type, true);
 	}
 	
 	this.init();
 }
 
-function BananaOSFileData(name, type){
+function BananaOSFileData(name, type, openOnLoad){
 	this.name;
 	this.type;
 	this.content;
 	this.sendingAjax;
+	this.openOnLoad;
 	
 	this.init = function(){
 		this.name = name;
 		this.type = type;
 		this.sendingAjax = false;
+		this.openOnLoad = openOnLoad;
 		
 		this.acquireContent();
 	}
@@ -536,11 +538,12 @@ function BananaOSFileData(name, type){
 			  },
 			  
 			  complete: function(){
-				  if(this.t_result == "success"){
-					  console.log("Successfully acquired content from server.");
-					  console.log(this.t_context.content);
-				  } else {
-					  console.log("Failed to acquire content from server.");
+				  if(this.t_context.openOnLoad){
+					  switch(this.t_context.type){
+						  case "code":
+							  new BananaOSCodeEditor(this.t_context);
+							  break;
+					  }
 				  }
 			  }
 			});
@@ -589,7 +592,7 @@ function BananaOSFileData(name, type){
 	this.init();
 }
 
-function BananaOSCodeEditor(content){
+function BananaOSCodeEditor(file){
 	this.window;
 	this.editorId = "bananaOsCodeEditor" + $(document).get(0).t_bananaOs.getUniqueFileId();
 	this.editor;
@@ -598,12 +601,14 @@ function BananaOSCodeEditor(content){
 	this.defaultHeight = 350;
 	this.elementSrc = '<div id="' + this.editorId + '" class="bananaOsCodeEditor"></div>';
 	this.content;
+	this.file;
 	
 	this.sendingAjax;
 
 	this.init = function(){
 		this.sendingAjax = false;
-		this.content = content;
+		this.file = file;
+		this.content = this.file.content;
 		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Code Editor", this.defaultWidth, this.defaultHeight, this.elementSrc);
 		this.setListeners();
 	};
@@ -621,44 +626,7 @@ function BananaOSCodeEditor(content){
 			this.editor.setValue(this.content);
 		}
 	}
-	
-	this.sendCommand = function(command){
-		if(!this.sendingAjax){
-			this.sendingAjax = true;
-			$.ajax({
-			  url: "/console/execute",
-			  
-			  method: "POST",
-			  
-			  t_context : this,
-			  t_command : command,
-			  
-			  data: { command : command },
-			  
-			  success : function(json){
-				  this.t_result = json.result;
-			  },
-			  
-			  error : function(ex, eStr, eTh){
-				  this.t_result = eStr;
-			  },
-			  
-			  complete: [function(){
-				  $(this.t_context.output).append("> " + this.t_command + "<br>");  
-				  $(this.t_context.input).val("");
-				  $(this.t_context.output).append(this.t_result);
-				  $(this.t_context.output).scrollTop($(this.t_context.output).get(0).scrollHeight);
-			  }, function(){
-				  this.t_context.sendingAjax = false;
-			  }]
-			});
-		} else {
-			window.setTimeout(function(command, t_context){
-				t_context.sendCommand(command);
-			}, 50, command, this);
-		}
-	}
-	
+
 	this.init();
 }
 
