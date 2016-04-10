@@ -27,7 +27,7 @@ function BananaOS(){
 	this.loadingMessageNumber;
 	this.loadingMessageTimeLetterSlow = 15;
 	this.loadingMessageQueue = [
-	                            ["BananaOS v0.0.1 Loading...<br>", 0, false],
+	                            /*["BananaOS v0.0.1 Loading...<br>", 0, false],
 	                            ["Oooooooooooooohhhhhhhhh", 2000, true, 50],
 	                            ["Aaaaah", 2000, true, 45],
 	                            ["Hmmmmmmmmmmmmmmmmmmmm", 2000, true, 40],
@@ -39,13 +39,14 @@ function BananaOS(){
 	                            ["Book<br>", 2000, false],
 	                            ["Book<br>", 500, false],
 	                            ["Book<br>", 100, false],
-	                            ["Book<br>", 100, false],
+	                            ["Book<br>", 100, false],*/
 	                            ];
 	
 	this.defaultApps = [
 	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
 	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
 	                    {id:"calculatorApp", icon:"images/calc.png", callback:function(){new BananaOSCalculator();}},
+	                    {id:"fileBrowserApp", icon:"images/calc.png", callback:function(){new BananaOSFileBrowser();}},
 	                    ];
 	
 	this.apps = {};
@@ -324,12 +325,8 @@ function BananaOSCalculator(){
 	this.defaultHeight = 350;
 	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="2">Clear</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td><td rowspan="2">Enter</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
 	this.output;
-	
-	this.sendingAjax;
 
 	this.init = function(){
-		this.sendingAjax = false;
-		
 		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Calculator", this.defaultWidth, this.defaultHeight, this.elementSrc);
 		this.setListeners();
 	};
@@ -368,6 +365,80 @@ function BananaOSCalculator(){
 		} else {
 			$(this.output).data("hasbananas", 1);
 			$(this.output).get(0).innerHTML = "Banana";
+		}
+	}
+	
+	this.init();
+}
+
+function BananaOSFileBrowser(){
+	this.window;
+	this.defaultId = "bananaOsFileBrowserWindow";
+	this.defaultWidth = 500;
+	this.defaultHeight = 350;
+	this.elementSrc = '<div class="bananaOsTerminalOutput"></div><input type="text" class="bananaOsTerminalInput"></input>';
+	this.input;
+	this.output;
+	
+	this.sendingAjax;
+
+	this.init = function(){
+		this.sendingAjax = false;
+		this.getFileList();
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		this.setListeners();
+	};
+	
+	this.setListeners = function(){
+		if($("#" + this.defaultId).length == 0){
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 50, this);
+		} else {
+			this.window = $(document).get(0).t_bananaOs.windows.bananaOsConsoleWindow;
+			
+			this.input = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalInput");
+			this.output = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalOutput");
+			
+			$(this.input).get(0).t_context = this;
+			$(this.output).get(0).t_context = this;
+			
+			$(this.input).on("keypress",function(e){
+				if(e.which == 13){
+					$(this).get(0).t_context.sendCommand($(this).val());
+				}
+			});
+		}
+	}
+	
+	this.getFileList = function(){
+		if(!this.sendingAjax){
+			this.sendingAjax = true;
+			$.ajax({
+			  url: "/file/list",
+			  
+			  method: "GET",
+			  
+			  t_context : this,
+			  
+			  data: {},
+			  
+			  success : function(json){
+				  this.t_result = json.result;
+			  },
+			  
+			  error : function(ex, eStr, eTh){
+				  this.t_result = eStr;
+			  },
+			  
+			  complete: function(){
+				  console.log(this.t_result);
+			  }
+			});
+		} else {
+			window.setTimeout(function(t_context){
+				t_context.getFileList();
+			}, 50, this);
 		}
 	}
 	
