@@ -104,7 +104,7 @@ body {
 	z-index: 80;
 }
 .bananaOsDesktopWindow {
-	position: relative;
+	position: absolute;
 	border-radius: 2px;
 	overflow: hidden;
 	box-sizing: border-box;

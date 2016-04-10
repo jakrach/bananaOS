@@ -45,6 +45,7 @@ function BananaOS(){
 	this.defaultApps = [
 	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
 	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}}
+	                    {id:"calculatorApp", icon:"images/start.png", callback:function(){new BananaOSCalculator();}},
 	                    ];
 	
 	this.apps = {};
@@ -311,6 +312,53 @@ function BananaOSAboutPage(){
 	this.init = function(){
 		$(document).get(0).t_bananaOs.addWindow("bananaOsAboutWindow", "About Banana OS", this.defaultWidth, this.defaultHeight, this.elementSrc);
 	};
+	
+	this.init();
+}
+
+function BananaOSCalculator(){
+	this.window;
+	this.defaultId = "bananaOsConsoleWindow";
+	this.defaultWidth = 500;
+	this.defaultHeight = 350;
+	this.elementSrc = '<table id="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr></tbody><tbody><tr><td>7</td><td>8</td><td>9</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
+	this.input;
+	this.output;
+	
+	this.sendingAjax;
+
+	this.init = function(){
+		this.sendingAjax = false;
+		
+		$(document).get(0).t_bananaOs.addWindow("bananaOsConsoleWindow", "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		this.setListeners();
+	};
+	
+	this.setListeners = function(){
+		if($("#" + this.defaultId).length == 0){
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 50, this);
+		} else {
+			this.window = $(document).get(0).t_bananaOs.windows.bananaOsConsoleWindow;
+			
+			this.input = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalInput");
+			this.output = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalOutput");
+			
+			$(this.input).get(0).t_context = this;
+			$(this.output).get(0).t_context = this;
+			
+			$(this.input).on("keypress",function(e){
+				if(e.which == 13){
+					$(this).get(0).t_context.calculate();
+				}
+			});
+		}
+	}
+	
+	this.calculate = function(){
+		
+	}
 	
 	this.init();
 }
