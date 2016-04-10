@@ -683,6 +683,12 @@ function BananaOSCodeEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
+			
+			this.window.t_context = this;
+			this.window.resize = function(){
+				$(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow.t_context.editor.resize();
+			}
+			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
 				$(this).get(0).t_editorContext.file.setContent($(this).get(0).t_editorContext.editor.getValue());
