@@ -180,12 +180,19 @@ body {
 	box-sizing: border-box;
 }
 .bananaOsCalculatorPad > tbody > tr > td {
-	border: 1px solid black;
-	border-radius: 8px;
-	width: 35px; 
-	height: 35px;
-	text-align: center;
-	cursor: pointer;
+	background-color: #e0e0e0;
+    border-radius: 2px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.54);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 20px;
+    margin: 5px;
+    text-align: center;
+    width: 50px;
+}
+
+.bananaOsCalculatorPad > tbody > tr > td:active {
+	background-color: #bdbdbd;
 }
 
 .bananaOsDeveloperCont {
