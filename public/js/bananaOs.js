@@ -505,11 +505,12 @@ function BananaOSFileData(name, type){
 
 function BananaOSCodeEditor(content){
 	this.window;
+	this.editorId = "bananaOsCodeEditor" + $(document).get(0).t_bananaOs.getUniqueFileId();
 	this.editor;
 	this.defaultId = "bananaOsCodeEditorWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div id="bananaOsCodeEditor'+$(document).get(0).t_bananaOs.getUniqueFileId()+'"></div>';
+	this.elementSrc = '<div id="' + this.editorId + '"></div>';
 	this.content;
 	
 	this.sendingAjax;
@@ -528,7 +529,7 @@ function BananaOSCodeEditor(content){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
-			this.editor = ace.edit("bananaOsCodeEditor");
+			this.editor = ace.edit(this.editorId);
 			this.editor.setTheme("ace/theme/monokai");
 			this.editor.getSession().setMode("ace/mode/javascript");
 			this.editor.setValue(this.content);
