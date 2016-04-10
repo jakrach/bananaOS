@@ -46,7 +46,7 @@ function BananaOS(){
 	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
 	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
 	                    {id:"calculatorApp", icon:"images/calc.png", callback:function(){new BananaOSCalculator();}},
-	                    {id:"fileBrowserApp", icon:"images/calc.png", callback:function(){new BananaOSFileBrowser();}},
+	                    {id:"fileBrowserApp", icon:"images/folder.png", callback:function(){new BananaOSFileBrowser();}},
 	                    ];
 	
 	this.apps = {};
@@ -450,13 +450,13 @@ function BananaOSFile(name, type, containerId){
 		
 		switch(this.type){
 			case "txt":
-				this.icon = '<i class="fa fa-file-text-o bananaOsFileIcon"></i>';
+				this.icon = '<i class="fa fa-2x fa-file-text-o bananaOsFileIcon"></i>';
 				break;
 			case "code":
-				this.icon = '<i class="fa fa-file-code-o bananaOsFileIcon"></i>';
+				this.icon = '<i class="fa fa-2x fa-file-code-o bananaOsFileIcon"></i>';
 				break;
 			default:
-				this.icon = '<i class="fa fa-file-o bananaOsFileIcon"></i>';
+				this.icon = '<i class="fa fa-2x fa-file-o bananaOsFileIcon"></i>';
 				break;
 		}
 		
