@@ -48,6 +48,12 @@ function BananaOS(){
 	                            ["Book<br>", 200, false],
 	                            ["Look ", 200, false],
 	                            ["Book<br>", 200, false],
+	                            ["Com", 2000, false],
+	                            ["pu", 500, false],
+	                            ["tor<br>", 500, false],
+	                            ["Com", 2000, false],
+	                            ["pu", 500, false],
+	                            ["tor<br>", 500, false],
 	                            ];
 	
 	this.defaultApps = [
