@@ -341,7 +341,7 @@ function BananaOSCalculator(){
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsConsoleWindow;
 			this.output = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorOutput");
-			
+			$(this.output).data("hasbananas", 0);
 			$(this.output).get(0).t_context = this;
 			var t_calcContext = this;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").each(function(){
@@ -359,7 +359,12 @@ function BananaOSCalculator(){
 	}
 	
 	this.calculate = function(){
-		$(this.output).get(0).innerHTML = "Banana";
+		if($(this.output).data("hasbananas") != 0){
+			$(this.output).get(0).innerHTML = "SO MANY BANANAS";
+		} else {
+			$(this.output).data("hasbananas", 1);
+			$(this.output).get(0).innerHTML = "Banana";
+		}
 	}
 	
 	this.init();
