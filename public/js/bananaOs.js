@@ -412,6 +412,7 @@ function BananaOSFileBrowser(){
 			  
 			  success : function(json){
 				  for(i in json){
+					  console.log(json[i]);
 					  this.t_context.files[json[i].name] = new BananaOSFile(json[i].name, json[i].type, "bananaOsFileBrowserContent");
 				  }
 			  },
