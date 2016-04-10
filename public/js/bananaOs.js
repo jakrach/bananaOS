@@ -208,7 +208,7 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	}
 	
 	this.setListeners = function(){
-		$("#" + this.id).on("click.activeWindowListener", function(){
+		$("#" + this.id).on("mousedown.activeWindowListener", function(){
 			$(".bananaOsDesktopWindow.bananaOsDesktopWindowActive").removeClass("bananaOsDesktopWindowActive");
 			$(this).addClass("bananaOsDesktopWindowActive");
 		});
