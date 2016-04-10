@@ -381,40 +381,22 @@ function BananaOSFileBrowser(){
 	this.defaultId = "bananaOsFileBrowserWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div class="bananaOsTerminalOutput"></div><input type="text" class="bananaOsTerminalInput"></input>';
+	this.elementSrc = '<div id="bananaOsFileBrowserContent"></div>';
 	this.input;
 	this.output;
+	
+	this.files = {};
 	
 	this.sendingAjax;
 
 	this.init = function(){
 		this.sendingAjax = false;
 		this.getFileList();
-		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "File Browser", this.defaultWidth, this.defaultHeight, this.elementSrc);
 		this.setListeners();
 	};
 	
-	this.setListeners = function(){
-		if($("#" + this.defaultId).length == 0){
-			window.setTimeout(function(t_context){
-				t_context.setListeners();
-			}, 50, this);
-		} else {
-			this.window = $(document).get(0).t_bananaOs.windows.bananaOsConsoleWindow;
-			
-			this.input = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalInput");
-			this.output = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsTerminalOutput");
-			
-			$(this.input).get(0).t_context = this;
-			$(this.output).get(0).t_context = this;
-			
-			$(this.input).on("keypress",function(e){
-				if(e.which == 13){
-					$(this).get(0).t_context.sendCommand($(this).val());
-				}
-			});
-		}
-	}
+	this.setListeners = function(){}
 	
 	this.getFileList = function(){
 		if(!this.sendingAjax){
@@ -429,7 +411,9 @@ function BananaOSFileBrowser(){
 			  data: {},
 			  
 			  success : function(json){
-				  this.t_result = json;
+				  for(i in json){
+					  this.t_context.files[json[i].name] = new BananaOSFile(json[i].name, json[i].type, "bananaOsFileBrowserContent");
+				  }
 			  },
 			  
 			  error : function(ex, eStr, eTh){
