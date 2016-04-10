@@ -42,8 +42,10 @@ function BananaOS(){
 	                            ["Book<br>", 100, false],*/
 	                            ];
 	
-	this.defaultApps = [{id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
-	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}}];
+	this.defaultApps = [
+	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
+	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}}
+	                    ];
 	
 	this.apps = {};
 	this.windows = {};
