@@ -559,10 +559,12 @@ function BananaOSFileData(name, type, openOnLoad){
 	}
 	
 	this.setContent = function(newContent){
+		console.log("setContent called with new content: ", newContent);
 		this.content = newContent;
 	}
 	
 	this.saveFile = function(callback){
+		console.log("SaveFile called");
 		if(!this.sendingAjax){
 			console.log("saving file.");
 			this.sendingAjax = true;
