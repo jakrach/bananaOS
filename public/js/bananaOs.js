@@ -107,7 +107,9 @@ function BananaOS(){
 			this.addApp(app.id, app.icon, app.callback);
 		}
 		
-		new BananaOSAboutPage();
+		window.setTimeout(function(){
+			new BananaOSAboutPage();
+		}, 50);
 	}
 	
 	this.addApp = function(id, icon, callback){
