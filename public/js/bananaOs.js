@@ -322,7 +322,7 @@ function BananaOSCalculator(){
 	this.defaultId = "bananaOsCalculatorWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="4">Enter</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
+	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="2">Clear</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td><td rowspan="2">Enter</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
 	this.output;
 	
 	this.sendingAjax;
@@ -351,6 +351,9 @@ function BananaOSCalculator(){
 			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").on("click", function(){
 				if($(this).get(0).innerHTML != "Enter"){
+					$($(this).get(0).t_context.output).get(0).innerHTML = "";
+					$($(this).get(0).t_context.output).data("hasbananas", 0);
+				} else if($(this).get(0).innerHTML != "Enter"){
 					$($(this).get(0).t_context.output).append($(this).get(0).innerHTML);
 				} else {
 					$(this).get(0).t_context.calculate();
