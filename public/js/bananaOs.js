@@ -42,7 +42,7 @@ function BananaOS(){
 	                            ["Book<br>", 100, false],*/
 	                            ];
 	
-	this.defaultApps = [{id:"consoleApp", icon:"public/images/console.png", callback:function(){new BananaOSConsole();}}];
+	this.defaultApps = [{id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}}];
 	
 	this.apps = {};
 	this.windows = {};
@@ -66,7 +66,7 @@ function BananaOS(){
 			}, message[1], message, this);
 		} else {
 			$("#loadingMessages").fadeOut(1000, function(){
-				(new Audio("public/audio/bananaOsTone.ogg")).play();
+				(new Audio("audio/bananaOsTone.ogg")).play();
 				$("#loadingBananaBoxHidingCont").fadeIn(1000);
 				
 				window.setTimeout(function(){
