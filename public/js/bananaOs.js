@@ -500,7 +500,92 @@ function BananaOSFile(name, type, containerId){
 }
 
 function BananaOSFileData(name, type){
+	this.name;
+	this.type;
+	this.content;
+	this.sendingAjax;
 	
+	this.init = function(){
+		this.name = name;
+		this.type = type;
+		this.sendingAjax = false;
+		
+		this.acquireContent();
+	}
+	
+	this.acquireContent = function(){
+		if(!this.sendingAjax){
+			this.sendingAjax = true;
+			$.ajax({
+			  url: "/file/read",
+			  
+			  method: "GET",
+			  
+			  t_context : this,
+			  
+			  data: {file : this.name},
+			  
+			  success : function(json){
+				  this.t_result = "success";
+				  this.t_context.content = json.data;
+			  },
+			  
+			  error : function(ex, eStr, eTh){
+				  this.t_result = eStr;
+			  },
+			  
+			  complete: function(){
+				  if(this.t_result == "success"){
+					  console.log("Successfully acquired content from server.");
+					  console.log(this.t_contet.content);
+				  } else {
+					  console.log("Failed to acquire content from server.");
+				  }
+			  }
+			});
+		} else {
+			window.setTimeout(function(t_context){
+				t_context.acquireContent();
+			}, 50, this);
+		}
+	}
+	
+	this.setContent = function(newContent){
+		this.content = newContent;
+	}
+	
+	this.saveFile = function(){
+		if(!this.sendingAjax){
+			this.sendingAjax = true;
+			$.ajax({
+			  url: "/file/write",
+			  
+			  method: "GET",
+			  
+			  t_context : this,
+			  
+			  data: {name : this.name},
+			  
+			  success : function(json){
+				  
+			  },
+			  
+			  error : function(ex, eStr, eTh){
+				  this.t_result = eStr;
+			  },
+			  
+			  complete: function(){
+				  
+			  }
+			});
+		} else {
+			window.setTimeout(function(t_context){
+				t_context.acquireContent();
+			}, 50, this);
+		}
+	}
+	
+	this.init();
 }
 
 function BananaOSCodeEditor(content){
