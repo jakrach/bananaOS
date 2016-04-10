@@ -48,7 +48,7 @@ function BananaOS(){
 	                            ["Book<br>", 200, false],
 	                            ["Look ", 200, false],
 	                            ["Book<br>", 200, false],
-	                            ["Com", 2000, false],
+	                            ["Com", 2000, false, "audio/computor.ogg"],
 	                            ["pu", 500, false],
 	                            ["tor<br>", 500, false],
 	                            ["Com", 2000, false],
@@ -81,6 +81,9 @@ function BananaOS(){
 					showWord(message[0], message[3], 0, function(){$(document).get(0).t_bananaOs.showLoadingMessagesN();});
 				} else {
 					$("#loadingMessages").append(message[0]);
+					if(typeof(message[4]) != "undefined"){
+						(new Audio(message[4])).play();
+					}
 					t_context.showLoadingMessagesN();
 				}
 			}, message[1], message, this);
