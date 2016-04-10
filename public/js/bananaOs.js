@@ -27,7 +27,7 @@ function BananaOS(){
 	this.loadingMessageNumber;
 	this.loadingMessageTimeLetterSlow = 15;
 	this.loadingMessageQueue = [
-	                            /*["BananaOS v0.0.1 Loading...<br>", 0, false],
+	                            ["BananaOS v0.0.1 Loading...<br>", 0, false],
 	                            ["Oooooooooooooohhhhhhhhh", 2000, true, 50],
 	                            ["Aaaaah", 2000, true, 45],
 	                            ["Hmmmmmmmmmmmmmmmmmmmm", 2000, true, 40],
@@ -36,10 +36,18 @@ function BananaOS(){
 	                            [".<br>", 100, false],
 	                            ["But", 2000, false],
 	                            ["ton<br>", 75, false],
-	                            ["Book<br>", 2000, false],
-	                            ["Book<br>", 500, false],
+	                            ["But", 500, false],
+	                            ["ton<br>", 75, false],
+	                            ["But", 500, false],
+	                            ["ton<br>", 75, false],
+	                            ["Look ", 2000, false],
 	                            ["Book<br>", 100, false],
-	                            ["Book<br>", 100, false],*/
+	                            ["Look ", 500, false],
+	                            ["Book<br>", 100, false],
+	                            ["Look ", 100, false],
+	                            ["Book<br>", 100, false],
+	                            ["Look ", 100, false],
+	                            ["Book<br>", 100, false],
 	                            ];
 	
 	this.defaultApps = [
