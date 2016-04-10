@@ -554,6 +554,12 @@ function BananaOSFileData(name, type, openOnLoad){
 						  case "code":
 							  new BananaOSCodeEditor(this.t_context);
 							  break;
+						  case "text":
+							  new BananaOSTextEditor(this.t_context);
+							  break;
+						  default:
+							  new BananaOSTextEditor(this.t_context);
+						  	  break;
 					  }
 				  }
 			  }
@@ -652,6 +658,46 @@ function BananaOSCodeEditor(file){
 	this.init();
 }
 
-function BananaOSTextEditor(){
+function BananaOSTextEditor(file){
+	this.window;
+	this.editorId = "bananaOsTextEditor" + $(document).get(0).t_bananaOs.getUniqueFileId();
+	this.editor;
+	this.defaultId = "bananaOsTextEditorWindow";
+	this.defaultWidth = 500;
+	this.defaultHeight = 350;
+	this.elementSrc = '<div id="' + this.editorId + '" class="bananaOsTextEditor"></div>';
+	this.content;
+	this.file;
 	
+	this.sendingAjax;
+
+	this.init = function(){
+		this.sendingAjax = false;
+		this.file = file;
+		this.content = this.file.content;
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Text Editor", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		this.setListeners();
+	};
+	
+	this.setListeners = function(){
+		if($("#" + this.defaultId).length == 0){
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 50, this);
+		} else {
+			this.window = $(document).get(0).t_bananaOs.windows.bananaOsTextEditorWindow;
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
+				$(this).get(0).t_editorContext.file.setContent($(this).get(0).t_editorContext.editor.getValue());
+				$(this).get(0).t_editorContext.file.saveFile();
+			});
+			
+			this.editor = ace.edit(this.editorId);
+			this.editor.setTheme("ace/theme/terminal");
+			this.editor.getSession().setMode("ace/mode/text");
+			this.editor.setValue(this.content);
+		}
+	}
+
+	this.init();
 }
