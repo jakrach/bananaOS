@@ -92,11 +92,19 @@ app.post('/file/read', function (req, res) {
 
 // API call to execute a command
 app.post('/console/execute', function (req, res) {
-	if (req.body.command != "banana") {
-		var results = {result : "Invalid command!<br>"};
-	} else {
+	if (req.body.command == "banana") {
 		var data = _readFile("/etc/motd").replace(/(?:\r\n|\r|\n)/g, '<br>').replace(/ /g, '&nbsp;');
 		var results = {result : data};
+	} else if (/^banana\s+.*$/.test(req.body.command)) {
+		var out = /^banana\s+(.*)$/.exec(req.body.command)[1];
+		console.log(out);
+		var data = _readFile("/etc/motd").replace(/(?:\r\n|\r|\n)/g, '<br>');
+		data = data.replace("Welcome to BananaOS!", out).replace(/ /g, '&nbsp;');
+		var results = {result : data};
+	}	else if (req.body.command == "help") {
+		var results = {result : "Try 'banana'.<br>"}
+	} else {
+		var results = {result : "Invalid command!<br>"};
 	}
 	var json = JSON.stringify(results);
 	res.setHeader('Content-Type', 'application/json');
