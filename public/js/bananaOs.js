@@ -509,7 +509,7 @@ function BananaOSCodeEditor(content){
 	this.defaultId = "bananaOsCodeEditorWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div id="bananaOsCodeEditor"></div>';
+	this.elementSrc = '<div id="bananaOsCodeEditor'+$(document).get(0).t_bananaOs.getUniqueFileId()+'"></div>';
 	this.content;
 	
 	this.sendingAjax;
