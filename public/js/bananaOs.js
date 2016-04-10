@@ -306,8 +306,8 @@ function BananaOSConsole(){
 function BananaOSAboutPage(){
 	this.window;
 	this.defaultId = "bananaOsAboutWindow";
-	this.defaultWidth = 500;
-	this.defaultHeight = 350;
+	this.defaultWidth = 660;
+	this.defaultHeight = 600;
 	this.elementSrc = '<div class="bananaOsAboutVideo"><iframe width="420" height="315" src="https://www.youtube.com/embed/8d4RtvMQp10" frameborder="0" allowfullscreen></iframe></div><div class="bananaOsDeveloperCont"><img class="bananaOsDeveloperPortrait" src="images/blue_martian.png"></img><div class="bananaOsDeveloperBio">Jeremy Krach : Backend<br>Jeremy is a UMD CS Major and banana afficionado</div></div><div class="bananaOsDeveloperCont"><img class="bananaOsDeveloperPortrait" src="images/red_martian.png"></img><div class="bananaOsDeveloperBio">Chris Rodriguez : Frontend<br>Chris is a UMBC CS Major and potassium addict</div></div>';
 
 	this.init = function(){

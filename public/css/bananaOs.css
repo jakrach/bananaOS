@@ -197,11 +197,14 @@ body {
 }
 #bananaOsAboutWindow > .bananaOsDesktopWindowContent{
 	display: flex;
+    flex-flow: row wrap;
 }
 .bananaOsAboutVideo {
-	width: 100%;
 	box-sizing: border-box;
-	padding: 20px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 0;
+    width: 100%;
 }
 .bananaOsDeveloperPortrait {
 	max-width: 50%;
