@@ -638,10 +638,10 @@ function BananaOSCodeEditor(file){
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
 				$(this).get(0).t_editorContext.file.setContent($(this).get(0).t_editorContext.editor.getValue());
 				
-				var t_windowId = $(this).data("windowid");
+				/*var t_windowId = $(this).data("windowid");
 				$(this).get(0).t_editorContext.file.saveFile(function(){
 					$(document).get(0).t_bananaOs.closeWindow(t_windowId);
-				});
+				});*/
 				e.stopPropagation();
 			});
 			
