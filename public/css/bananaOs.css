@@ -134,8 +134,12 @@ body {
 }
 
 .bananaOsTerminalOutput {
+	background-color: black;
+	color: rgba(255,255,255,0.93);
+	font-family: Helvetica;
 	box-sizing: border-box;
     height: calc(100% - 20px);
+    overflow-y: auto;
     position: relative;
     top: 0;
     width: 100%;

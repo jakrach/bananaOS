@@ -264,6 +264,7 @@ function BananaOSConsole(){
 			  method: "POST",
 			  
 			  t_context : this,
+			  t_command : command,
 			  
 			  data: { command : command },
 			  
@@ -276,8 +277,10 @@ function BananaOSConsole(){
 			  },
 			  
 			  complete: [function(){
+				  $(this.t_context.output).append("> " + this.t_command + "<br>");  
 				  $(this.t_context.input).val("");
 				  $(this.t_context.output).append(this.t_result);
+				  $(this.t_context.output).scrollTop($(this.t_context.output).get(0).scrollHeight);
 			  }, function(){
 				  this.t_context.sendingAjax = false;
 			  }]
