@@ -527,6 +527,7 @@ function BananaOSFileData(name, type){
 			  
 			  success : function(json){
 				  this.t_result = "success";
+				  console.log(json);
 				  this.t_context.content = json.data;
 			  },
 			  
