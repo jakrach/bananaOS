@@ -51,6 +51,7 @@ function BananaOS(){
 	
 	this.apps = {};
 	this.windows = {};
+	this.n_files = 0;
 	
 	this.init = function(){
 		console.log("In bananaOS init function");
@@ -112,6 +113,10 @@ function BananaOS(){
 		} else {
 			window.alert("Error: No window exists with this ID");
 		}
+	}
+	
+	this.getUniqueFileId = function(){
+		return this.n_files++;
 	}
 	
 	this.init();
@@ -443,4 +448,77 @@ function BananaOSFileBrowser(){
 	}
 	
 	this.init();
+}
+
+function BananaOSFile(name, type, containerId){
+	this.id;
+	this.containerId;
+	this.name;
+	this.type;
+	this.icon;
+	this.elementSrc;
+	
+	this.init = function(){
+		this.id = "file" + $(document).get(0).t_bananaOs.getUniqueFileId();
+		this.name = name;
+		this.type = type;
+		
+		switch(this.type){
+			case "txt":
+				this.icon = '<i class="fa fa-file-text-o bananaOsFileIcon"></i>';
+				break;
+			case "code":
+				this.icon = '<i class="fa fa-file-code-o bananaOsFileIcon"></i>';
+				break;
+			default:
+				this.icon = '<i class="fa fa-file-o bananaOsFileIcon"></i>';
+				break;
+		}
+		
+		this.generateDOMElement();
+	}
+	
+	this.generateDOMElement = function(){
+		this.elementSrc = '<div id="' + this.id + '" class="bananaOsFile">';
+		this.elementSrc += '	<div class="bananaOsFileIcon">' + this.icon + '</div>';
+		this.elementSrc += '	<div class="bananaOsFileName">' + this.name + '</div>';
+		this.elementSrc += '</div>';
+		
+		$("#" + this.containerId).append(this.elementSrc);
+	}
+	
+	this.removeListeners = function(){
+		$("#" + this.id).off("click", null);
+	}
+	
+	this.setListeners = function(){
+		if($("" + this.id).length > 0){
+			$("#" + this.id).get(0).t_context = this;
+			$("#" + this.id).on("click", function(){
+				$(this).get(0).t_context.open();
+			});
+		} else {
+			window.setTimeout(function(t_context){
+				t_context.setListeners();
+			}, 50, this);
+		}
+	}
+	
+	this.open = function(){
+		console.log("Open() called for file " + this.name + " with type " + this.type);
+	}
+	
+	this.init();
+}
+
+function BananaOSFileData(name, type){
+	
+}
+
+function BananaOSCodeEditor(){
+	
+}
+
+function BananaOSTextEditor(){
+	
 }
