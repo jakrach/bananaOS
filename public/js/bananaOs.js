@@ -542,6 +542,7 @@ function BananaOSFileData(name, type, openOnLoad){
 			  },
 			  
 			  complete: function(){
+				  this.t_context.sendingAjax = false;
 				  if(this.t_context.openOnLoad){
 					  switch(this.t_context.type){
 						  case "code":
