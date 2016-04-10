@@ -322,7 +322,6 @@ function BananaOSCalculator(){
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
 	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="4">Enter</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
-	this.input;
 	this.output;
 	
 	this.sendingAjax;
@@ -341,15 +340,18 @@ function BananaOSCalculator(){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsConsoleWindow;
-			
-			this.input = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad");
 			this.output = $("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorOutput");
 			
-			$(this.input).get(0).t_context = this;
 			$(this.output).get(0).t_context = this;
+			var t_calcContext = this;
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").each(function(){
+				$(this).get(0).t_context = t_calcContext;
+			});
 			
-			$(this.input).on("keypress",function(e){
-				if(e.which == 13){
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowContent > .bananaOsCalculatorPad > tbody > tr > td").on("click", function(){
+				if($(this).get(0).innerHTML != "Enter"){
+					$($(this).get(0).t_context.output).append($(this).get(0).innerHTML);
+				} else {
 					$(this).get(0).t_context.calculate();
 				}
 			});
