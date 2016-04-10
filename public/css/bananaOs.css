@@ -187,18 +187,22 @@ body {
 }
 
 .bananaOsDeveloperCont {
-	box-sizing: border-box;
-	width: 50%;
-	padding: 15px;
-	display: flex;
-	justify-content: center;
 	align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    padding: 15px;
+    width: 50%;
 }
-
+#bananaOsAboutWindow > .bananaOsDesktopWindowContent{
+	display: flex;
+}
 .bananaOsDeveloperPortrait {
 	max-width: 50%;
 	max-height: 50%;
 	box-sizing: border-box;
+	margin-bottom: 20px;
 }
 
 .bananaOsDeveloperBio {
