@@ -139,7 +139,7 @@ body {
 	color: rgba(255,255,255,0.93);
 	font-family: monospace !important;
 	box-sizing: border-box;
-    height: calc(100% - 20px);
+    height: calc(100% - 25px);
     overflow-y: auto;
     position: relative;
     top: 0;
@@ -148,7 +148,7 @@ body {
 .bananaOsTerminalInput {
 	bottom: 0;
     box-sizing: border-box;
-    height: 20px;
+    height: 25px;
     position: absolute;
     width: 100%;
 }

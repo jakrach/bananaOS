@@ -240,7 +240,7 @@ function BananaOSConsole(){
 	this.defaultId = "bananaOsConsoleWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
-	this.elementSrc = '<div class="bananaOsTerminalOutput"></div><input type="text" class="bananaOsTerminalInput"></input>';
+	this.elementSrc = '<div class="bananaOsTerminalOutput" disabled></div><input type="text" class="bananaOsTerminalInput"></input>';
 	this.input;
 	this.output;
 	
@@ -266,7 +266,7 @@ function BananaOSConsole(){
 			
 			$(this.input).get(0).t_context = this;
 			$(this.output).get(0).t_context = this;
-			
+			$(this.input).focus();
 			$(this.input).on("keypress",function(e){
 				if(e.which == 13){
 					$(this).get(0).t_context.sendCommand($(this).val());
