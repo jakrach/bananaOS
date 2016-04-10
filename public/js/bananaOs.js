@@ -630,8 +630,8 @@ function BananaOSCodeEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
-			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
-			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
+			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
 				$(this).get(0).editorContext.file.setContent(this.editor.getValue());
 				
 				var t_windowId = $(this).data("windowid");
