@@ -1,7 +1,9 @@
+// Imports
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+// Setting up express
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -22,7 +24,12 @@ var _listFiles = function(dir) {
 		} else results.push(tmp);
 	});
 
-	return results;
+	var hashes = [];
+	results.forEach(function(str) {
+		hashes.push({name: str, type: str.split('.')[1]});
+	})
+
+	return hashes;
 };
 
 var _writeFile = function(fname, text) {
@@ -40,10 +47,13 @@ var _readFile = function(fname) {
 	return filesystem.readFileSync(fname, 'utf8');
 }
 
+// Landing page
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + "/" + "index.html");
 });
 
+
+// API call to list files
 app.get('/file/list', function(req, res) {
 	var results = _listFiles(__dirname + "/" + "jail")
 	var json = JSON.stringify(results);
@@ -51,11 +61,12 @@ app.get('/file/list', function(req, res) {
 	res.send(json);
 });
 
+// API call to create a file
 app.post('/file/write', function (req, res) {
 	if (req.body.file == null || req.body.data == null) {
 		res.status('400').send('params not met');
 	} else {
-		if (!/^[a-z0-9]+$/.test(req.body.file)) {
+		if (!/^[a-z0-9]+\.(txt|code)$/.test(req.body.file)) {
 			console.log('illegal character');
 			return res.status('400').send('illegal character');
 		}
@@ -64,19 +75,22 @@ app.post('/file/write', function (req, res) {
 	}
 });
 
+// API call to read a file
 app.post('/file/read', function (req, res) {
 	if (req.body.file == null) {
 		res.status('400').send('params not met');
 	} else {
-		if (!/^[a-z0-9]+$/.test(req.body.file)) {
+		if (!/^[a-z0-9]+\.(txt|code)$/.test(req.body.file)) {
 			console.log('illegal character');
 			return res.status('400').send('illegal character');
 		}	
-		_readFile(__dirname + "/jail/" + req.body.file);
-		res.status('200').send('OK');
+		var str = _readFile(__dirname + "/jail/" + req.body.file);
+		res.setHeader('Content-Type', 'application/json');
+		res.status('200').send(JSON.stringify({data : str}));
 	}
 }); 
 
+// API call to execute a command
 app.post('/console/execute', function (req, res) {
 	if (req.body.command != "banana") {
 		var results = {result : "Invalid command!<br>"};
