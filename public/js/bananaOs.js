@@ -537,7 +537,7 @@ function BananaOSFileData(name, type){
 			  complete: function(){
 				  if(this.t_result == "success"){
 					  console.log("Successfully acquired content from server.");
-					  console.log(this.t_contet.content);
+					  console.log(this.t_context.content);
 				  } else {
 					  console.log("Failed to acquire content from server.");
 				  }
