@@ -191,6 +191,7 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 		$("#" + this.id).css("height", this.height + "px");
 		
 		this.setListeners();
+		this.setActiveWindow();
 	}
 	
 	this.removeListeners = function(){
@@ -208,9 +209,9 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	}
 	
 	this.setListeners = function(){
+		$("#" + this.id).get(0).t_context = this;
 		$("#" + this.id).on("mousedown.activeWindowListener", function(){
-			$(".bananaOsDesktopWindow.bananaOsDesktopWindowActive").removeClass("bananaOsDesktopWindowActive");
-			$(this).addClass("bananaOsDesktopWindowActive");
+			$(this).get(0).t_context.setActiveWindow();
 		});
 		$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click." + this.id + "CloseButton", function(e){
 			e.stopPropagation();
@@ -223,6 +224,11 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 			containment: "#bananaOsDesktopWindowArea", 
 			scroll: false
 		}).resizable();
+	}
+	
+	this.setActiveWindow = function(){
+		$(".bananaOsDesktopWindow.bananaOsDesktopWindowActive").removeClass("bananaOsDesktopWindowActive");
+		$("#" + this.id).addClass("bananaOsDesktopWindowActive");
 	}
 	
 	this.init();
@@ -507,6 +513,7 @@ function BananaOSFileData(name, type, openOnLoad){
 	this.name;
 	this.type;
 	this.content;
+
 	this.sendingAjax;
 	this.openOnLoad;
 	
@@ -533,7 +540,6 @@ function BananaOSFileData(name, type, openOnLoad){
 			  
 			  success : function(json){
 				  this.t_result = "success";
-				  console.log(json);
 				  this.t_context.content = json.data;
 			  },
 			  
@@ -560,14 +566,11 @@ function BananaOSFileData(name, type, openOnLoad){
 	}
 	
 	this.setContent = function(newContent){
-		console.log("setContent called with new content: ", newContent);
 		this.content = newContent;
 	}
 	
 	this.saveFile = function(callback){
-		console.log("SaveFile called");
 		if(!this.sendingAjax){
-			console.log("saving file.");
 			this.sendingAjax = true;
 			$.ajax({
 			  url: "/file/write",
@@ -583,7 +586,6 @@ function BananaOSFileData(name, type, openOnLoad){
 				  },
 			  
 			  success : function(json){
-				  console.log(json);
 			  },
 			  
 			  error : function(ex, eStr, eTh){
