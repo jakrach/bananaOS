@@ -470,6 +470,7 @@ function BananaOSFile(name, type, containerId){
 		this.elementSrc += '</div>';
 		
 		$("#" + this.containerId).append(this.elementSrc);
+		this.setListeners();
 	}
 	
 	this.removeListeners = function(){
