@@ -562,7 +562,7 @@ function BananaOSFileData(name, type, openOnLoad){
 		this.content = newContent;
 	}
 	
-	this.saveFile = function(){
+	this.saveFile = function(callback){
 		if(!this.sendingAjax){
 			this.sendingAjax = true;
 			$.ajax({
@@ -571,8 +571,12 @@ function BananaOSFileData(name, type, openOnLoad){
 			  method: "POST",
 			  
 			  t_context : this,
+			  t_callback : callback,
 			  
-			  data: {name : this.name},
+			  data: {
+				  file : this.name,
+				  data: this.content
+				  },
 			  
 			  success : function(json){
 				  
@@ -583,13 +587,15 @@ function BananaOSFileData(name, type, openOnLoad){
 			  },
 			  
 			  complete: function(){
-				  
+				  if(typeof(this.t_callback) == "function"){
+					  this.t_callback();
+				  }
 			  }
 			});
 		} else {
-			window.setTimeout(function(t_context){
-				t_context.acquireContent();
-			}, 50, this);
+			window.setTimeout(function(t_context, callback){
+				t_context.acquireContent(callback);
+			}, 50, this, callback);
 		}
 	}
 	
@@ -624,9 +630,14 @@ function BananaOSCodeEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
-			
+			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
 			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
+				$(this).get(0).editorContext.file.setContent(this.editor.getValue());
 				
+				var t_windowId = $(this).data("windowid");
+				$(this).get(0).editorContext.file.saveFile(function(){
+					$(document).get(0).t_bananaOs.closeWindow(t_windowId);
+				});
 			});
 			
 			this.editor = ace.edit(this.editorId);
