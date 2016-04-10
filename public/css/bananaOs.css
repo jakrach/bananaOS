@@ -1,0 +1,149 @@
+@CHARSET "UTF-8";
+
+body {
+	align-content: center;
+	box-sizing: border-box;
+	background-color: rgba(0, 0, 0, 1);
+	color: rgba(255, 255, 255, 0.83);
+	height: 100%;
+	justify-content: center;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+#loadingMessages {
+	box-sizing: border-box;
+	color: rgba(255, 255, 255, 0.82);
+	width: 100%;
+}
+
+#loadingBananaBoxHidingCont {
+	display: none;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 20;
+}
+
+#loadingBananaBoxCont {
+	display: flex;
+	background-color: rgba(65, 65, 255, 1);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+}
+
+#loadingBananaBox {
+	background-color: rgba(230, 255, 10, 0.83);
+	border: 0 none rgba(230, 255, 81, 1);
+	border-radius: 30px;
+	box-shadow: 0 0 30px 30px rgba(230, 255, 10, 0.83);
+	box-sizing: border-box;
+	height: 50%;
+	max-width: 50%;
+	position: relative;
+}
+
+#loadingBananaBox>img {
+	box-sizing: border-box;
+	height: 100%;
+	position: relative;
+}
+
+#bananaOsDesktop {
+	position: absolute;
+	background-color: white;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 10;
+}
+
+#bananaOsDesktopApplicationBar {
+	box-sizing: border-box;
+	width: 100%;
+	border-bottom: 1px solid black;
+	position: relative;
+	height: 100px;
+	background: transparent linear-gradient(to bottom, rgba(0, 0, 255, 0.83),
+		rgba(0, 0, 255, 0.1), rgba(0, 0, 255, 0.1), rgba(0, 0, 255, 0.83))
+		repeat scroll 0px 0px;
+}
+.bananaOsDesktopApp {
+	box-sizing: border-box;
+    float: left;
+    height: 75px;
+    margin: 10px;
+    padding: 5px;
+    position: relative;
+}
+
+.bananaOsDesktopAppIcon {
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+}
+
+#bananaOsDesktopWindowArea {
+	box-sizing: border-box;
+	position: relative;
+	width: 100%;
+	height: calc(100% - 100px);
+	background-color: rgba(0, 125, 255, 0.2);
+}
+
+.bananaOsDesktopWindow:active {
+	z-index: 80;
+}
+.bananaOsDesktopWindow {
+	position: relative;
+	border-radius: 2px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.bananaOsDesktopWindowTitleBar {
+	box-sizing: border-box;
+	cursor: pointer;
+	background-color: #1976d2;
+	color: rgba(255,255,255,0.83);
+	font-family: Helvetica;
+	font-size: 13px;
+	padding: 5px;
+	height: 25px;
+	width: 100%;
+}
+.bananaOsDesktopWindowTitleBarClose {
+	position: relative;
+	float: right;
+}
+.bananaOsDesktopWindowContent {
+	background-color: #f5f5f5;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.83);
+    font-family: Helvetica;
+    height: calc(100% - 25px);
+    width: 100%;
+}
+
+.bananaOsTerminalOutput {
+	box-sizing: border-box;
+    height: calc(100% - 20px);
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+.bananaOsTerminalInput {
+	bottom: 0;
+    box-sizing: border-box;
+    height: 20px;
+    position: absolute;
+    width: 100%;
+}
