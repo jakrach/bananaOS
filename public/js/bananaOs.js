@@ -429,7 +429,7 @@ function BananaOSFileBrowser(){
 			  data: {},
 			  
 			  success : function(json){
-				  this.t_result = json.result;
+				  this.t_result = json;
 			  },
 			  
 			  error : function(ex, eStr, eTh){
