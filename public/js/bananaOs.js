@@ -232,7 +232,7 @@ function BananaOSConsole(){
 	this.init = function(){
 		this.sendingAjax = false;
 		
-		$(document).get(0).t_bananaOs.addWindow("bananaOsConsoleWindow", "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
 		this.setListeners();
 	};
 	
@@ -310,7 +310,7 @@ function BananaOSAboutPage(){
 	this.elementSrc = '<div class="bananaOsAboutHead">Banana OS v0.0.1</div><div class="bananaOsAboutBody">BananaOS is a project by Jeremy Krach, UMD CS Major and banana afficionady, and Chris Rodriguez, UMBC CS Major and potassium addict.</div>';
 
 	this.init = function(){
-		$(document).get(0).t_bananaOs.addWindow("bananaOsAboutWindow", "About Banana OS", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "About Banana OS", this.defaultWidth, this.defaultHeight, this.elementSrc);
 	};
 	
 	this.init();
@@ -318,7 +318,7 @@ function BananaOSAboutPage(){
 
 function BananaOSCalculator(){
 	this.window;
-	this.defaultId = "bananaOsConsoleWindow";
+	this.defaultId = "bananaOsCalculatorWindow";
 	this.defaultWidth = 500;
 	this.defaultHeight = 350;
 	this.elementSrc = '<div class="bananaOsCalculatorOutput"></div><table class="bananaOsCalculatorPad"><tbody><tr><td>+</td><td>-</td><td>*</td><td>/</td></tr><tr><td>7</td><td>8</td><td>9</td><td rowspan="4">Enter</td></tr><tr><td>4</td><td>5</td><td>6</td></tr><tr><td>1</td><td>2</td><td>3</td></tr><tr><td colspan="2">0</td><td>.</td></tr></tbody></table>';
@@ -329,7 +329,7 @@ function BananaOSCalculator(){
 	this.init = function(){
 		this.sendingAjax = false;
 		
-		$(document).get(0).t_bananaOs.addWindow("bananaOsConsoleWindow", "Console", this.defaultWidth, this.defaultHeight, this.elementSrc);
+		$(document).get(0).t_bananaOs.addWindow(this.defaultId, "Calculator", this.defaultWidth, this.defaultHeight, this.elementSrc);
 		this.setListeners();
 	};
 	
