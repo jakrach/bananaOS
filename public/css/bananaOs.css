@@ -89,6 +89,7 @@ body {
 .bananaOsDesktopAppIcon {
 	box-sizing: border-box;
 	height: 100%;
+	cursor: pointer;
 }
 
 #bananaOsDesktopWindowArea {
@@ -99,9 +100,10 @@ body {
 	background-color: rgba(0, 125, 255, 0.2);
 }
 
-.bananaOsDesktopWindow:active {
+.bananaOsDesktopWindow.bananaOsDesktopActiveWindow {
 	z-index: 80;
 }
+
 .bananaOsDesktopWindow {
 	position: absolute;
 	border-radius: 2px;

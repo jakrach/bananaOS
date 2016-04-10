@@ -208,6 +208,10 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	}
 	
 	this.setListeners = function(){
+		$("#" + this.id).on("click.activeWindowListener", function(){
+			$(".bananaOsDesktopWindow.bananaOsDesktopWindowActive").removeClass("bananaOsDesktopWindowActive");
+			$(this).addClass("bananaOsDesktopWindowActive");
+		});
 		$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click." + this.id + "CloseButton", function(e){
 			e.stopPropagation();
 			$(document).get(0).t_bananaOs.closeWindow($(this).data("windowid"));
@@ -620,6 +624,11 @@ function BananaOSCodeEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsCodeEditorWindow;
+			
+			$("#" + this.id + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(){
+				
+			});
+			
 			this.editor = ace.edit(this.editorId);
 			this.editor.setTheme("ace/theme/monokai");
 			this.editor.getSession().setMode("ace/mode/javascript");
