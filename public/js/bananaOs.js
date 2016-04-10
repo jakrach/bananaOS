@@ -208,8 +208,8 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 	
 	this.setListeners = function(){
 		if($("#" + this.id).length > 0){
-			$("#" + this.id).css("left", "calc(25% - " + (this.width/2) + "px)");
-			$("#" + this.id).css("top", "calc(25% - " + (this.height/2) + "px)");
+			$("#" + this.id).css("left", "calc(50% - " + (this.width/2) + "px)");
+			$("#" + this.id).css("top", "calc(50% - " + (this.height/2) + "px)");
 			$("#" + this.id).css("width", this.width + "px");
 			$("#" + this.id).css("height", this.height + "px");
 			$("#" + this.id).css("z-index", (50 + $(document).get(0).t_bananaOs.getUniqueFileId()));
