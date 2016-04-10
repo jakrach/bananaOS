@@ -44,7 +44,7 @@ function BananaOS(){
 	
 	this.defaultApps = [
 	                    {id:"aboutApp", icon:"images/start.png", callback:function(){new BananaOSAboutPage();}},
-	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}}
+	                    {id:"consoleApp", icon:"images/console.png", callback:function(){new BananaOSConsole();}},
 	                    {id:"calculatorApp", icon:"images/start.png", callback:function(){new BananaOSCalculator();}},
 	                    ];
 	
