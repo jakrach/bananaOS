@@ -100,7 +100,7 @@ body {
 	background-color: rgba(0, 125, 255, 0.2);
 }
 
-.bananaOsDesktopWindow.bananaOsDesktopActiveWindow {
+.bananaOsDesktopWindow.bananaOsDesktopWindowActive {
 	z-index: 80;
 }
 
