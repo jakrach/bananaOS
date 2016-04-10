@@ -719,12 +719,7 @@ function BananaOSTextEditor(file){
 			}, 50, this);
 		} else {
 			this.window = $(document).get(0).t_bananaOs.windows.bananaOsTextEditorWindow;
-			this.window.t_context = this;
-			$(this.window).resizable({
-				resize: function( event, ui ) {
-					$(document).get(0).t_bananaOs.windows.bananaOsTextEditorWindow.t_context.editor.resize();
-		        }
-			});
+			
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").get(0).t_editorContext = this;
 			$("#" + this.defaultId + " > .bananaOsDesktopWindowTitleBar > .bananaOsDesktopWindowTitleBarClose").on("click", function(e){
 				$(this).get(0).t_editorContext.file.setContent($(this).get(0).t_editorContext.editor.getValue());
