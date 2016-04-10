@@ -228,18 +228,28 @@ body {
 	padding: 10px;
 }
 .bananaOsFile {
+	border-radius: 8px;
 	box-sizing: border-box;
-	position: relative;
-	float: left;
-	width: 50px;
-	margin: 5px;
+	cursor: pointer;
+    float: left;
+    margin: 5px;
+    position: relative;
+    width: 75px;
+}
+.bananaOsFile:hover {
+	background-color: #90caf9;
+}
+.bananaOsFile:active {
+	background-color: #42a5f5;
 }
 .bananaOsFileIcon {
 	box-sizing: border-box;
-	position: relative;
+    position: relative;
+    text-align: center;
 }
 .bananaOsFileName {
 	box-sizing: border-box;
-	width: 100%;
-	text-overflow: clip;
+    text-align: center;
+    width: 100%;
+    word-wrap: break-word;
 }
