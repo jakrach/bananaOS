@@ -106,6 +106,8 @@ function BananaOS(){
 			app = this.defaultApps[key];
 			this.addApp(app.id, app.icon, app.callback);
 		}
+		
+		new BananaOSAboutPage();
 	}
 	
 	this.addApp = function(id, icon, callback){
