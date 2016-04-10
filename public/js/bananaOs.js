@@ -81,8 +81,8 @@ function BananaOS(){
 					showWord(message[0], message[3], 0, function(){$(document).get(0).t_bananaOs.showLoadingMessagesN();});
 				} else {
 					$("#loadingMessages").append(message[0]);
-					if(typeof(message[4]) != "undefined"){
-						(new Audio(message[4])).play();
+					if(typeof(message[3]) != "undefined"){
+						(new Audio(message[3])).play();
 					}
 					t_context.showLoadingMessagesN();
 				}
