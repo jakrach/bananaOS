@@ -268,23 +268,16 @@ function BananaOSConsole(){
 			  data: { command : command },
 			  
 			  success : function(json){
-				  this.t_status = true;
 				  this.t_result = json.result;
 			  },
 			  
 			  error : function(ex, eStr, eTh){
-				  this.t_status = false;
 				  this.t_result = eStr;
 			  },
 			  
 			  complete: [function(){
-				  if(this.t_status){
-					  $(this.t_context.input).val("");
-					  $(this.t_context.output).val(this.t_result);
-				  } else {
-					  $(this.t_context.input).val("");
-					  $(this.t_context.output).val(eStr);
-				  }
+				  $(this.t_context.input).val("");
+				  $(this.t_context.output).val(this.t_result);
 			  }, function(){
 				  this.t_context.sendingAjax = false;
 			  }]
