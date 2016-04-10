@@ -255,7 +255,9 @@ function BananaOSDesktopWindow(id, title, width, height, content){
 				scroll: false
 			}).resizable({
 				resize : function(){
-					console.log(this);
+					if(typeof($(this).get(0).t_context.resize) == "function"){
+						$(this).get(0).t_context.resize();
+					}
 				}
 			});
 		} else {
