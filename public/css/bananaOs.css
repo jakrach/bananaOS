@@ -239,11 +239,12 @@ body {
 	padding: 10px;
 }
 .bananaOsFile {
-	border-radius: 8px;
-	box-sizing: border-box;
-	cursor: pointer;
+	border-radius: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
     float: left;
     margin: 5px;
+    padding: 5px 3px;
     position: relative;
     width: 75px;
 }
