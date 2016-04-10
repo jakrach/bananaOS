@@ -564,6 +564,7 @@ function BananaOSFileData(name, type, openOnLoad){
 	
 	this.saveFile = function(callback){
 		if(!this.sendingAjax){
+			console.log("saving file.");
 			this.sendingAjax = true;
 			$.ajax({
 			  url: "/file/write",
@@ -579,7 +580,7 @@ function BananaOSFileData(name, type, openOnLoad){
 				  },
 			  
 			  success : function(json){
-				  
+				  console.log(json);
 			  },
 			  
 			  error : function(ex, eStr, eTh){
