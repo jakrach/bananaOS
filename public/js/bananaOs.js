@@ -446,6 +446,7 @@ function BananaOSFile(name, type, containerId){
 		this.id = "file" + $(document).get(0).t_bananaOs.getUniqueFileId();
 		this.name = name;
 		this.type = type;
+		this.containerId = containerId;
 		
 		switch(this.type){
 			case "txt":
