@@ -220,15 +220,26 @@ body {
 	font-family: Helvetica;
 	font-size: 13px;
 }
+.bananaOsFileBrowserContent {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 10px;
+}
 .bananaOsFile {
+	box-sizing: border-box;
 	position: relative;
 	float: left;
 	width: 50px;
+	margin: 5px;
 }
 .bananaOsFileIcon {
+	box-sizing: border-box;
 	position: relative;
 }
 .bananaOsFileName {
+	box-sizing: border-box;
 	width: 100%;
 	text-overflow: clip;
 }
