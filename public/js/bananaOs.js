@@ -277,7 +277,7 @@ function BananaOSConsole(){
 			  
 			  complete: [function(){
 				  $(this.t_context.input).val("");
-				  $(this.t_context.output).val(this.t_result);
+				  $(this.t_context.output).append(this.t_result);
 			  }, function(){
 				  this.t_context.sendingAjax = false;
 			  }]
